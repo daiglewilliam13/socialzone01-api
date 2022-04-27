@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { toJSON, paginate } = require('./plugins');
 
 const postSchema = mongoose.Schema(
     {
@@ -20,4 +20,11 @@ const postSchema = mongoose.Schema(
     {
         timestamps: true,
     }
-)
+);
+
+postSchema.plugin(toJSON);
+postSchema.plugin(paginate);
+
+const Post = mongoose.model('Post', postSchema);
+
+module.exports = Post;
