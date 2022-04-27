@@ -25,6 +25,6 @@ const commentSchema = mongoose.Schema(
 commentSchema.plugin(toJSON);
 commentSchema.plugin(paginate);
 
-const Post = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;
