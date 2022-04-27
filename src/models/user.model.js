@@ -46,8 +46,14 @@ const userSchema = mongoose.Schema(
     },
     timelinePosts: [Number],
     timelineComments: [Number],
-    username: String,
-    fullName: String,
+    username:{
+      type: String,
+    }, 
+    fullName: {
+      type: String,
+    },
+    friends: [Number],
+    receivedRequests: [Number],
     
   },
   {
