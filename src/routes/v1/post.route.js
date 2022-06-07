@@ -25,5 +25,17 @@ router
         newPost.save();
         res.send(newPost);
     });
+router
+    .route('/:id')
+    .get((req,res)=>{
+        res.send(req.params.id)
+    })
 
+router
+    .route('/author/:id')
+    .get(async (req,res)=>{
+        const id = req.params.id
+        const posts = await Post.find({authorId:id});
+        res.send(posts)    
+    })
 module.exports = router;
