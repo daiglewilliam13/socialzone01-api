@@ -3,9 +3,9 @@ const validate = require('../../middlewares/validate');
 const authValidation = require('../../validations/auth.validation');
 const authController = require('../../controllers/auth.controller');
 const auth = require('../../middlewares/auth');
-
+const mongoose = require('mongoose');
 const router = express.Router();
-
+const Post = require('../../models/post.model.js');
 
 router
     .route('/')
@@ -14,7 +14,16 @@ router
     })
     .post((req, res)=>{
         console.log(req.body);
-        res.send('posts POST route')
+        const data = req.body;
+        const newPost = new Post({
+            body: data.body,
+            authorId: data.authorId,
+            authorName: data.authorName,
+            comments: []
+            id: {}
+        });
+        newPost.save();
+        res.send(newPost);
     });
 
 module.exports = router;
