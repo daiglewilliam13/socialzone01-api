@@ -19,8 +19,8 @@ router
             body: data.body,
             authorId: data.authorId,
             authorName: data.authorName,
-            comments: []
-            id: {}
+            comments: [],
+            _id: mongoose.Types.ObjectId()
         });
         newPost.save();
         res.send(newPost);

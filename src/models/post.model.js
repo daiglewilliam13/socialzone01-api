@@ -3,7 +3,7 @@ const { toJSON, paginate } = require('./plugins');
 
 const postSchema = mongoose.Schema(
     {
-        id: {
+        _id: {
             type: mongoose.Types.ObjectId
         },
         authorId: {
@@ -16,10 +16,10 @@ const postSchema = mongoose.Schema(
         body: {
             type: String,
         },
-        comments: {
+        comments: [{
             type: mongoose.Types.ObjectId,
             ref: "Comments"
-        }
+        }]
     },
     {
         timestamps: true,
