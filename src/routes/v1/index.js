@@ -20,11 +20,11 @@ const defaultRoutes = [
   {
     path: '/posts',
     route: postRoute,
-  },
-  {
-    path: '/comments',
-    route: commentRoute,
   }
+  // {
+  //   path: '/comments',
+  //   route: commentRoute,
+  // }
 ];
 
 const devRoutes = [
