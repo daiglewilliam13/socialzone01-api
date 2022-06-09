@@ -22,6 +22,10 @@ router
             comments: [],
             _id: mongoose.Types.ObjectId(),
             created: Date.now(),
+            likes: 1,
+            dislikes: 0,
+            likedBy: [data.authorId],
+            dislikedBy: [],
         });
         newPost.save();
         res.send(newPost);

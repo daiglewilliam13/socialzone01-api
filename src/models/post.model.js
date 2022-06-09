@@ -20,8 +20,17 @@ const postSchema = mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "Comments"
         }],
-        created: Date,
-
+        created: { type: Date },
+        likes: { type: Number },
+        dislikes: { type: Number },
+        likedBy: [{
+            type: mongoose.Types.ObjectId,
+            ref: "User"
+        }],
+        dislikedBy: [{
+            type: mongoose.Types.ObjectId,
+            ref: "User"
+        }],
     },
     {
         timestamps: true,
