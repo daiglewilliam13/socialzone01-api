@@ -19,7 +19,9 @@ const postSchema = mongoose.Schema(
         comments: [{
             type: mongoose.Types.ObjectId,
             ref: "Comments"
-        }]
+        }],
+        created: Date,
+
     },
     {
         timestamps: true,

@@ -20,7 +20,8 @@ router
             authorId: data.authorId,
             authorName: data.authorName,
             comments: [],
-            _id: mongoose.Types.ObjectId()
+            _id: mongoose.Types.ObjectId(),
+            created: Date.now(),
         });
         newPost.save();
         res.send(newPost);
