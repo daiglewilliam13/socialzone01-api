@@ -16,7 +16,7 @@ const commentSchema = mongoose.Schema(
         body: {
             type: string,
         },
-        date: {
+        created: {
             type: date,
         },
     },
