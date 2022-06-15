@@ -11,10 +11,13 @@ const commentSchema = mongoose.Schema(
             ref: "User",
         },
         authorName: {
-            type: String,
+            type: string,
         },
         body: {
-            type: String,
+            type: string,
+        },
+        date: {
+            type: date,
         },
     },
     {
