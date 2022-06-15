@@ -20,7 +20,7 @@ const defaultRoutes = [
   {
     path: '/posts',
     route: postRoute,
-  }
+  },
   {
     path: '/comments',
     route: commentRoute,
