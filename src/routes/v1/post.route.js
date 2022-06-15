@@ -40,7 +40,7 @@ router
     .route('/author/:id')
     .get(async (req,res)=>{
         const id = req.params.id
-        const posts = await Post.find({authorId:id});
+        const posts = await Post.find({authorId:id}).sort({created:-1})
         res.send(posts)    
     })
 module.exports = router;
