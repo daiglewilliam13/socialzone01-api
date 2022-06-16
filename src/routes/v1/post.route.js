@@ -6,6 +6,7 @@ const auth = require('../../middlewares/auth');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Post = require('../../models/post.model.js');
+const User = require('../../models/user.model.js');
 
 router
     .route('/')
