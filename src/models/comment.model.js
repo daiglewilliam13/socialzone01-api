@@ -5,7 +5,7 @@ const { toJSON, paginate } = require('./plugins');
 const commentSchema = mongoose.Schema(
     {
         id: {
-            type: Number
+            type: mongoose.Types.ObjectId,
         },
         authorId: {
             type: mongoose.Types.ObjectId,
@@ -14,11 +14,14 @@ const commentSchema = mongoose.Schema(
         authorName: {
             type: String,
         },
-        body: {
+        text: {
             type: String,
         },
         created: {type:Date},
-        replyTo: String,
+        replyTo: {
+            type: mongoose.Types.ObjectId,
+            ref: "Post"
+        }
     },
     {
         timestamps: true,

@@ -5,6 +5,7 @@ const authController = require('../../controllers/auth.controller');
 const auth = require('../../middlewares/auth');
 const Comment = require('../../models/comment.model');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 
 router
@@ -13,13 +14,12 @@ router
         res.send('comments get route')
     })
     .post((req, res)=>{
-        res.send('comments POST route')
         const data = req.body;
         const newComment = new Comment({
             id: mongoose.Types.ObjectId(),
             authorId: data.author,
             authorName: data.name,
-            body: data.text,
+            text: data.text,
             created: Date.now(),
             replyTo: data.replyTo,
         })
