@@ -4,9 +4,6 @@ const { toJSON, paginate } = require('./plugins');
 
 const commentSchema = mongoose.Schema(
     {
-        id: {
-            type: mongoose.Types.ObjectId,
-        },
         authorId: {
             type: mongoose.Types.ObjectId,
             ref: "User",

@@ -4,6 +4,7 @@ const authValidation = require('../../validations/auth.validation');
 const authController = require('../../controllers/auth.controller');
 const auth = require('../../middlewares/auth');
 const Comment = require('../../models/comment.model');
+const Post = require('../../models/post.model');
 const router = express.Router();
 const mongoose = require('mongoose');
 
@@ -16,7 +17,7 @@ router
     .post((req, res)=>{
         const data = req.body;
         const newComment = new Comment({
-            id: mongoose.Types.ObjectId(),
+            _id: mongoose.Types.ObjectId(),
             authorId: data.author,
             authorName: data.name,
             text: data.text,
@@ -24,6 +25,11 @@ router
             replyTo: data.replyTo,
         })
         newComment.save(),
+        console.log(newComment._id);
+        console.log(data.replyTo)
+        Post.findOneAndUpdate({"_id":data.replyTo}, {$push:{'comments':newComment._id}}, {new: true}).then((doc)=>{
+            console.log(doc)
+        })
         res.send(newComment)
     })
 
