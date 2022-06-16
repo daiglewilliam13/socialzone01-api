@@ -33,9 +33,14 @@ router
     });
 router
     .route('/:id')
-    .get((req,res)=>{
-        res.send(req.params.id)
-    })
+    .get((req, res) => {
+        const postId = req.params.id;
+        Post.find({ "_id": postId })
+            .then((foundPost) => {
+                console.log(foundPost)
+                res.send({ "data": foundPost[0] });
+            });
+        })
 
 router
     .route('/author/:id')
