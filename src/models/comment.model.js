@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 
@@ -7,18 +8,17 @@ const commentSchema = mongoose.Schema(
             type: Number
         },
         authorId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: "User",
         },
         authorName: {
-            type: string,
+            type: String,
         },
         body: {
-            type: string,
+            type: String,
         },
-        created: {
-            type: date,
-        },
+        created: {type:Date},
+        replyTo: String,
     },
     {
         timestamps: true,
