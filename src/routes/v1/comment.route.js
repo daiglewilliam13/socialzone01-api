@@ -26,9 +26,20 @@ router
         })
         newComment.save(),
         Post.findOneAndUpdate({"_id":data.replyTo}, {$push:{'comments':newComment._id}}, {new: true}).then((doc)=>{
-            console.log(doc)
+            console.log("post updated")
+            res.send(newComment)
         })
-        res.send(newComment)
+        
+    });
+    router
+    .route('/:id')
+    .get((req,res)=>{
+        const postId = req.params.id;
+        Post.find({"_id": postId})
+        .then((foundPost)=>{
+            console.log(foundPost)
+            res.send({"data": foundPost[0].comments});
+        });
     })
 
 module.exports = router;
