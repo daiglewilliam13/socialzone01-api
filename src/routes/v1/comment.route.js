@@ -25,8 +25,6 @@ router
             replyTo: data.replyTo,
         })
         newComment.save(),
-        console.log(newComment._id);
-        console.log(data.replyTo)
         Post.findOneAndUpdate({"_id":data.replyTo}, {$push:{'comments':newComment._id}}, {new: true}).then((doc)=>{
             console.log(doc)
         })
