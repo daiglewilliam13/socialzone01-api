@@ -18,8 +18,8 @@ router
         const data = req.body;
         const newComment = new Comment({
             _id: mongoose.Types.ObjectId(),
-            authorId: data.author,
-            authorName: data.name,
+            userId: mongoose.Types.ObjectId(data.author),
+            username: data.username,
             text: data.text,
             created: Date.now(),
             replyTo: data.replyTo,
@@ -29,7 +29,6 @@ router
             console.log("post updated")
             res.send(newComment)
         })
-        
     });
 router
     .route('/:id')
