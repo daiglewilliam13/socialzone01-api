@@ -27,7 +27,7 @@ router
         newComment.save(),
         Post.findOneAndUpdate({"_id":data.replyTo}, {$push:{'comments':newComment._id}}).then((doc)=>{
             console.log("post updated")
-            res.send(doc)
+            res.send(newComment)
         })
         
     });
@@ -35,8 +35,7 @@ router
     .route('/:id')
     .get((req, res)=>{
         Comment.findOne({"_id": req.params.id}).then((foundComment)=>{
-            console.log(foundComment)
-            res.send({"data":foundComment[0]})
+            res.send({"data":foundComment})
         })
     })
 
