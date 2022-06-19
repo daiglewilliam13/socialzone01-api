@@ -23,9 +23,9 @@ router
             comments: [],
             _id: mongoose.Types.ObjectId(),
             created: Date.now(),
-            likes: 1,
+            likes: 0,
             dislikes: 0,
-            likedBy: [data.authorId],
+            likedBy: [],
             dislikedBy: [],
         });
         newPost.save();
@@ -37,7 +37,6 @@ router
         const postId = req.params.id;
         Post.find({ "_id": postId })
             .then((foundPost) => {
-                console.log(foundPost)
                 res.send({ "data": foundPost[0] });
             });
         })
@@ -48,5 +47,54 @@ router
         const id = req.params.id
         const posts = await Post.find({authorId:id}).sort({created:-1})
         res.send(posts)    
+    });
+router
+    .route('/:id/like')
+    .post(async (req,res)=>{
+        const postId = req.params.id
+        Post.findOne({"_id":postId}).then((foundPost)=>{
+            if(foundPost.likedBy.includes(req.body.id)) {
+                foundPost.updateOne({
+                    $inc:{ 'likes':-1 },
+                    $pull: {'likedBy': req.body.id }
+                }).exec(
+                    res.send(foundPost)
+                )
+            } else {
+                foundPost.updateOne({
+                    $inc: { 'likes': 1 },
+                    $push: { 'likedBy': req.body.id }
+                }).exec(
+                    res.send(foundPost)
+                )
+            }
+        })
     })
-module.exports = router;
+    .get(async (req, res) => {
+        const id = req.params.id
+        const foundPost = await Post.findOneAndUpdate({ _id: id }, { $inc: { 'dislikes': 1 } })
+        res.send(await foundPost);
+    })
+router
+    .route('/:id/dislike')
+    .post(async (req, res) => {
+        const postId = req.params.id
+        Post.findOne({ "_id": postId }).then((foundPost) => {
+            if (foundPost.dislikedBy.includes(req.body.id)) {
+                foundPost.updateOne({
+                    $inc: { 'dislikes': -1 },
+                    $pull: { 'dislikedBy': req.body.id }
+                }).exec(
+                    res.send(foundPost)
+                )
+            } else {
+                foundPost.updateOne({
+                    $inc: { 'dislikes': 1 },
+                    $push: { 'dislikedBy': req.body.id }
+                }).exec(
+                    res.send(foundPost)
+                )
+            }
+        })
+    })
+module.exports = router; 
