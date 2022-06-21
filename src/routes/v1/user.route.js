@@ -17,6 +17,12 @@ router
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
+
+router
+  .route('/:userId/add')
+  .post((req, res)=>{
+    res.send('add friend POST route')
+  })
 module.exports = router;
 
 /**
