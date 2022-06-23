@@ -50,8 +50,14 @@ const userSchema = mongoose.Schema(
     fullName: {
       type: String,
     },
-    friends: [Number],
-    receivedRequests: [Number],
+    following: [{
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    }],
+    followers: [{
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    }]
     
   },
   {
