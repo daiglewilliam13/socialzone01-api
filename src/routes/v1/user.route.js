@@ -19,9 +19,9 @@ router
 
 
 router
-  .route('/:userId/add')
+  .route('/:userId/follow')
   .post((req, res)=>{
-    res.send('add friend POST route')
+    res.send({message: 'follow POST route'})
   })
 module.exports = router;
 
