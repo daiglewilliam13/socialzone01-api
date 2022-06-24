@@ -41,7 +41,7 @@ router
     console.log(req.body)
     let userToUnfollow = req.params.userId;
     let userUnfollowing = req.body.id
-    let unFollower = await User.findByIdAndUpdate(userToUnFollow, {
+    let unFollower = await User.findByIdAndUpdate(userToUnfollow, {
       $pull: { followers: userFollowing }
     });
     let unFollowing = await User.findByIdAndUpdate(userUnfollowing, {
