@@ -3,6 +3,8 @@ const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
 const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
+const User = require('../../models/user.model');
+const mongoose = require('mongoose');
 
 const router = express.Router();
 
@@ -20,9 +22,35 @@ router
 
 router
   .route('/:userId/follow')
-  .post((req, res)=>{
-    res.send({message: 'follow POST route'})
+  .post(async (req, res)=>{
+    console.log(req.body)
+    let userToFollow = req.params.userId;
+    let userFollowing = req.body.id
+    let follower = await User.findByIdAndUpdate(userToFollow,{
+      $addToSet: {followers: userFollowing}
+    });
+    let following = await User.findByIdAndUpdate(userFollowing,{
+      $addToSet: {following: userToFollow}
+    })
+    let response = {following, follower}
+    res.send(response)
   })
+router
+  .route('/:userId/unfollow')
+  .post(async (req, res) => {
+    console.log(req.body)
+    let userToUnfollow = req.params.userId;
+    let userUnfollowing = req.body.id
+    let unFollower = await User.findByIdAndUpdate(userToUnFollow, {
+      $pull: { followers: userFollowing }
+    });
+    let unFollowing = await User.findByIdAndUpdate(userUnfollowing, {
+      $pull: { following: userToFollow }
+    })
+    let response = { unFollowing, unFollower }
+    res.send(response)
+  })
+
 module.exports = router;
 
 /**
