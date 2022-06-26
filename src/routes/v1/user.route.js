@@ -22,17 +22,21 @@ router
 
 router
   .route('/:userId/follow')
-  .post(async (req, res)=>{
+  .post(async (req, res) => {
     console.log(req.body)
     let userToFollow = req.params.userId;
     let userFollowing = req.body.id
-    let follower = await User.findByIdAndUpdate(userToFollow,{
-      $addToSet: {followers: userFollowing}
-    });
-    let following = await User.findByIdAndUpdate(userFollowing,{
-      $addToSet: {following: userToFollow}
-    })
-    let response = {following, follower}
+    let follower = await User.findByIdAndUpdate(
+      userToFollow,
+      { $addToSet: { followers: userFollowing } },
+      { new: true }
+    );
+    let following = await User.findByIdAndUpdate(
+      userFollowing, 
+      {$addToSet: { following: userToFollow }},
+      {new: true}
+    );
+    let response = { following, follower }
     res.send(response)
   })
 router
@@ -41,13 +45,15 @@ router
     console.log(req.body)
     let userToUnfollow = req.params.userId;
     let userUnfollowing = req.body.id
-    let unFollower = await User.findByIdAndUpdate(userToUnfollow, {
-      $pull: { followers: userFollowing }
-    });
-    let unFollowing = await User.findByIdAndUpdate(userUnfollowing, {
-      $pull: { following: userToFollow }
-    })
-    let response = { unFollowing, unFollower }
+    let unFollower = await User.findByIdAndUpdate(
+      userToUnfollow,
+      { $pull: { followers: userUnfollowing } },
+      { new: true });
+    let unFollowing = await User.findByIdAndUpdate(
+      userUnfollowing,
+      { $pull: { following: userToUnfollow } },
+      { new: true })
+    let response = { message: 'unfollowed', unFollowing, unFollower }
     res.send(response)
   })
 
