@@ -15,5 +15,12 @@ router
         let users = await User.find({}).then((data)=>{return data})
         res.send({posts, users})
     })
+router
+    .route('/:terms')
+    .get(async(req,res)=>{
+        const terms = req.param.terms;
+        console.log(terms)
+        res.send(`search terms: ${terms}`)
+    })
 
 module.exports = router;
