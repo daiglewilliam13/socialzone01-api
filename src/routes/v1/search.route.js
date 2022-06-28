@@ -17,8 +17,8 @@ router
 router
     .route('/find')
     .get(async (req, res) => {
-        const searchTerms = JSON.parse(req.query.terms);
-        const regex = new RegExp(searchTerms.terms, 'i')
+        const searchTerms = req.query.terms
+        const regex = new RegExp(searchTerms, 'i')
         let posts = await Post.find({
             $or: [
                 {body: regex},
