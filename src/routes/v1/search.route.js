@@ -7,20 +7,33 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Post = require('../../models/post.model')
 const User = require('../../models/user.model');
-
 router
     .route('/')
-    .get(async(req, res) => {
-        let posts = await Post.find({}).then((data)=>{return data})
-        let users = await User.find({}).then((data)=>{return data})
-        res.send({posts, users})
+    .get(async (req, res) => {
+        let posts = await Post.find({}).then((data) => { return data })
+        let users = await User.find({}).then((data) => { return data })
+        res.send({ posts, users })
     })
 router
-    .route('/:terms')
-    .get(async(req,res)=>{
-        const terms = req.param.terms;
-        console.log(terms)
-        res.send(`search terms: ${terms}`)
+    .route('/find')
+    .get(async (req, res) => {
+        const searchTerms = JSON.parse(req.query.terms);
+        const regex = new RegExp(searchTerms.terms, 'i')
+        let posts = await Post.find({
+            $or: [
+                {body: regex},
+                {authorName: regex},
+
+            ]
+            }).then((data) => {
+            return data
+        })
+        let users = await User.find({
+            name: regex
+        }).then((data) => {
+            return data
+        })
+        res.send({ posts, users })
     })
 
 module.exports = router;
