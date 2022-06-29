@@ -18,7 +18,7 @@ router
         const data = req.body;
         const newComment = new Comment({
             _id: mongoose.Types.ObjectId(),
-            userId: mongoose.Types.ObjectId(data.author),
+            userId: data.userId,
             username: data.username,
             text: data.text,
             created: Date.now(),
