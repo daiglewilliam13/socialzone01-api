@@ -5,6 +5,7 @@ const docsRoute = require('./docs.route');
 const postRoute = require('./post.route');
 const searchRoute = require('./search.route');
 const commentRoute = require('./comment.route');
+const notificationRoute = require('./notification.route');
 const config = require('../../config/config');
 
 const router = express.Router();
