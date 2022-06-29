@@ -5,6 +5,7 @@ const authController = require('../../controllers/auth.controller');
 const auth = require('../../middlewares/auth');
 const mongoose = require('mongoose');
 const router = express.Router();
+const Notification = require('../../models/notification.model')
 
 router
     .route('/')
@@ -13,7 +14,7 @@ router
         const obj = {
             message: "notification post route"
         }
-        res.send(obj)
+        res.send(req.body)
     })
 
 module.exports = router;

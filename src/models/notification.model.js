@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const notificationSchema = mongoose.Schema(
     {
         id: mongoose.Types.ObjectId,
-        eventType: string,
+        eventType: {type:String},
         recipient: {
             type: mongoose.Types.ObjectId,
             ref: "User"
@@ -12,8 +12,8 @@ const notificationSchema = mongoose.Schema(
                 type: mongoose.Types.ObjectId,
                 ref: "User"
         },
-        eventLink: string,
-        read: boolean,
+        eventLink: { type: String },
+        read: Boolean,
     },
     {
         timestamps: true,
@@ -23,4 +23,4 @@ const notificationSchema = mongoose.Schema(
 
 const Notification = mongoose.model("Notification", notificationSchema);
 
-export default Notification;
+module.exports = Notification;
