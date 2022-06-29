@@ -13,6 +13,7 @@ const notificationSchema = mongoose.Schema(
                 ref: "User"
         },
         eventLink: string,
+        read: boolean,
     },
     {
         timestamps: true,
