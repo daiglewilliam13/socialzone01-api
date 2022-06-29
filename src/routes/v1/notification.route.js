@@ -20,7 +20,6 @@ router
 .route('/:id')
 .get(async(req, res)=>{
     const foundNotifications = await Notification.find({"recipient":req.params.id})
-    console.log(foundNotifications)
     res.send(foundNotifications)
 })
 
