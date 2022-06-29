@@ -3,18 +3,16 @@ const { toJSON, paginate } = require('./plugins');
 
 const messageSchema = mongoose.Schema(
     {
-        id: {
-            type: Number
-        },
+        id: mongoose.Types.ObjectId,
         senderId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: "User",
         },
         senderName: {
             type: String,
         },
         recipientId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: "User",
         },
         recipientName: {

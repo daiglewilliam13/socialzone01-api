@@ -29,7 +29,9 @@ const defaultRoutes = [
   {
     path: '/search',
     route: searchRoute,
-  }
+  },
+    path: '/notifications',
+    route: notificationRoute,
 ];
 
 const devRoutes = [
