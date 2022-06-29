@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const notificationSchema = mongoose.Schema(
     {
         id: mongoose.Types.ObjectId,
-        event: string,
+        eventType: string,
         recipient: {
             type: mongoose.Types.ObjectId,
             ref: "User"
@@ -12,10 +12,7 @@ const notificationSchema = mongoose.Schema(
                 type: mongoose.Types.ObjectId,
                 ref: "User"
         },
-        referenceObject: {
-            type: mongoose.Types.ObjectId,
-            ref: "Post"
-        }
+        eventLink: string,
     },
     {
         timestamps: true,
