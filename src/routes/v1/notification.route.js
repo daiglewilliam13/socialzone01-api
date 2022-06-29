@@ -9,12 +9,12 @@ const Notification = require('../../models/notification.model')
 
 router
     .route('/')
-    .post((req, res) => {
+    .post(async (req, res) => {
         console.log(req.body)
-        const obj = {
-            message: "notification post route"
-        }
-        res.send(req.body)
+        const obj = req.body;
+        const newNotification = new Notification(obj)
+        const result = await newNotification.save();
+        res.send(result)
     })
 
 module.exports = router;
