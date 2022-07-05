@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const notificationSchema = mongoose.Schema(
     {
-        id: mongoose.Types.ObjectId,
+        _id: mongoose.Types.ObjectId,
         eventType: {type:String},
         recipient: {
             type: mongoose.Types.ObjectId,
@@ -12,7 +12,10 @@ const notificationSchema = mongoose.Schema(
                 type: mongoose.Types.ObjectId,
                 ref: "User"
         },
-        eventLink: { type: String },
+        eventLink: { 
+            type: mongoose.Types.ObjectId,
+            refPath: 'eventType'
+        },
         read: Boolean,
     },
     {

@@ -37,7 +37,7 @@ router
         const postId = req.params.id;
         Post.find({ "_id": postId })
             .then((foundPost) => {
-                res.send({ "data": foundPost[0] });
+                res.send(foundPost[0]);
             });
         })
 

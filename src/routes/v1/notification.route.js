@@ -19,8 +19,14 @@ router
 router
 .route('/:id')
 .get(async(req, res)=>{
-    const foundNotifications = await Notification.find({"recipient":req.params.id})
+    const foundNotifications = await Notification.find({"recipient":req.params.id}).sort({createdAt:-1})
     res.send(foundNotifications)
+})
+router
+.route('/read/:id')
+.get(async(req, res)=>{
+    const noticeToUpdate = await Notification.findOneAndUpdate({'_id':req.params.id},{read: true}, {new: true});
+    res.send(noticeToUpdate);
 })
 
 module.exports = router;
