@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const engagementSchema = mongoose.Schema({
     _id: {
-        type: mongoose.types.ObjectId;
+        type: mongoose.types.ObjectId,
     },
     authorId: {
         type: mongoose.Types.ObjectId,
