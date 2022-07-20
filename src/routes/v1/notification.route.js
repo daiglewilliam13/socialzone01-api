@@ -11,7 +11,8 @@ router
     .route('/')
     .post(async (req, res) => {
         console.log(req.body)
-        const obj = req.body;
+        const id = new mongoose.Types.ObjectId();
+        const obj = {_id: id, ...req.body};
         const newNotification = new Notification(obj)
         const result = await newNotification.save();
         res.send(result)
