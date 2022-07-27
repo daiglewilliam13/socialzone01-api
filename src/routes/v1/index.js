@@ -6,6 +6,7 @@ const postRoute = require('./post.route');
 const searchRoute = require('./search.route');
 const commentRoute = require('./comment.route');
 const notificationRoute = require('./notification.route');
+const messagesRoute = require('./messages.route');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -34,6 +35,10 @@ const defaultRoutes = [
   {
     path: '/notifications',
     route: notificationRoute,
+  },
+  {
+    path: '/messages',
+    route: messagesRoute,
   }
 ];
 
