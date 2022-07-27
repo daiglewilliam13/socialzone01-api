@@ -8,15 +8,9 @@ const messageSchema = mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "User",
         },
-        senderName: {
-            type: String,
-        },
         recipientId: {
             type: mongoose.Types.ObjectId,
             ref: "User",
-        },
-        recipientName: {
-            type: String,
         },
         body: {
             type: String,
