@@ -20,4 +20,10 @@ router
         res.send(result);
     })
 
+router
+.route('/:userId')
+.get(async (req, res)=>{
+    console.log(req.params.userId);
+    res.send('userID route')
+})
 module.exports = router;
