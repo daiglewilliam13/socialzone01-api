@@ -19,6 +19,7 @@ router
         const newMessage = new Message(obj);
         const result = await newMessage.save();
         res.send(result);
+        res.send(req.body);
     })
 
 module.exports = router;
