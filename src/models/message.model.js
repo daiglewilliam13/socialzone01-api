@@ -3,7 +3,7 @@ const { toJSON, paginate } = require('./plugins');
 
 const messageSchema = mongoose.Schema(
     {
-        id: mongoose.Types.ObjectId,
+        _id: mongoose.Types.ObjectId,
         senderId: {
             type: mongoose.Types.ObjectId,
             ref: "User",
