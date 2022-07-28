@@ -24,6 +24,6 @@ router
 .route('/:userId')
 .get(async (req, res)=>{
     console.log(req.params.userId);
-    res.send('userID route')
+    res.send({message: "user ID GET"})
 })
 module.exports = router;
