@@ -24,6 +24,13 @@ router
 .route('/:userId')
 .get(async (req, res)=>{
     console.log(req.params.userId);
-    res.send({message: "user ID GET"})
+    const foundMessages = await Message.find({$or:[{senderId: req.params.userId}, {recipientId: req.params.userId}]}, function(err, foundMessages){
+        if(err){
+            res.send(err)
+        } else {
+            return foundMessages
+        }
+    })
+    res.send(foundMessages)
 })
 module.exports = router;
