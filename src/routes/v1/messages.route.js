@@ -37,7 +37,7 @@ router
         res.send(foundMessages)
     })
 router
-.route('/:userId/read')
+.route('/:userId/read/:recipientId')
 .post(async(req,res)=>{
     res.send('mark read route')
 })
