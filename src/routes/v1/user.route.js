@@ -83,6 +83,20 @@ router
       res.send({ block})
     })
   })
+
+  router
+  .route(':/blockedUser/unblock')
+    .post(async (req, res) => {
+      Block.findOneAndDelete({
+        $and: [
+          { blockedUser: req.params.blockedUser },
+          { blockingUser: req.body.id }
+        ]
+      }, function (error, block) {
+        if (error) { res.send(error) }
+        res.send({message: "deleted: ", block })
+      })
+    })
 module.exports = router;
 
 /**
