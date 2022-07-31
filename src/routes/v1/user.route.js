@@ -58,8 +58,10 @@ router
   })
 
   router
-  .route('/:userId/block')
+  .route('/:blockedUser/block')
   .post(async (req,res)=>{
+    const blockedUser = req.params.blockedUser;
+    const blockingUser = req.body.blockingUser;
     res.send({message: "POST BLOCK ROUTE"})
   })
 module.exports = router;
