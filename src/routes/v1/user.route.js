@@ -5,6 +5,7 @@ const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
 const User = require('../../models/user.model');
 const mongoose = require('mongoose');
+const Block = require('../../models/block.model');
 
 const router = express.Router();
 
