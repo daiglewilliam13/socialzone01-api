@@ -73,7 +73,15 @@ router
   router
   .route('/:user1/blocked_from/:user2')
   .get(async(req,res)=>{
-    
+    Block.findOne({
+      $and:[
+        {blockedUser:req.params.user1},
+        {blockingUser: req.params.user2}
+      ]
+    }, function(error, block){
+      if(err){res.send(err)}
+      res.send(block)
+    })
   })
 module.exports = router;
 
