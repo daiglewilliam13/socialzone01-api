@@ -69,6 +69,12 @@ router
     const response = await newBlock.save();
     res.send({message: "POST BLOCK ROUTE", response})
   })
+
+  router
+  .route('/:user1/blocked_from/:user2')
+  .get(async(req,res)=>{
+    
+  })
 module.exports = router;
 
 /**
