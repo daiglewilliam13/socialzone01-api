@@ -37,8 +37,25 @@ router
         res.send(foundMessages)
     })
 router
-.route('/:userId/read/:recipientId')
-.post(async(req,res)=>{
-    res.send('mark read route')
-})
+    .route('/:userId/read/:recipientId')
+    .get(async (req, res) => {
+        const markedRead = await Message.updateMany(
+            {
+                $and: [
+                    //you are the recipient
+                    { recipientId: req.params.userId },
+                    //the person you are talking to
+                    { senderId: req.params.recipientId },
+                    //that haven't been read
+                    { isRead: false }
+                ]
+            }, 
+            { isRead: true }, 
+            function(error, res){
+                if(error){ console.log(error);}
+                return (res);
+            }
+            )
+        res.send(markedRead);
+    })
 module.exports = router;
