@@ -65,9 +65,19 @@ router
       blockedUser: req.params.blockedUser,
       blockingUser: req.body.id,
     }
-    const newBlock = new Block(blockObject);
-    const response = await newBlock.save();
-    res.send({ message: "POST BLOCK ROUTE", response })
+    const checkForBlock = await Block.findOne({
+      $and: [
+        { blockedUser: blockObject.blockedUser },
+        { blockingUser: blockObject.blockingUser }
+      ]
+    })
+    if(checkForBlock){
+      res.send({message: "block already exists", checkForBlock})
+    } else {
+      const newBlock = new Block(blockObject);
+      const response = await newBlock.save();
+      res.send({ message: "POST BLOCK ROUTE", response })
+    }
   })
 
 router
@@ -85,15 +95,16 @@ router
   })
 
 router
-  .route(':/blockedUser/unblock')
+  .route('/:blockedUser/unblock')
   .post(async (req, res) => {
+    console.log('post unblock')
     Block.findOneAndDelete({
       $and: [
         { blockedUser: req.params.blockedUser },
         { blockingUser: req.body.id }
       ]
     }, function (error, block) {
-      if (error) { res.send(error) }
+      if (error) { res.send({message: "error: ", error}) }
       res.send({ message: "deleted: ", block })
     })
   })
