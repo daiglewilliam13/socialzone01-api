@@ -79,8 +79,8 @@ router
         {blockingUser: req.params.user2}
       ]
     }, function(error, block){
-      if(err){res.send(err)}
-      res.send(block)
+      if(error){res.send(error)}
+      res.send({ block})
     })
   })
 module.exports = router;
