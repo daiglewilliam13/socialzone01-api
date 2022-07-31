@@ -33,9 +33,9 @@ router
       { new: true }
     );
     let following = await User.findByIdAndUpdate(
-      userFollowing, 
-      {$addToSet: { following: userToFollow }},
-      {new: true}
+      userFollowing,
+      { $addToSet: { following: userToFollow } },
+      { new: true }
     );
     let response = { following, follower }
     res.send(response)
@@ -58,45 +58,45 @@ router
     res.send(response)
   })
 
-  router
+router
   .route('/:blockedUser/block')
-  .post(async (req,res)=>{
+  .post(async (req, res) => {
     const blockObject = {
-      blockedUser :req.params.blockedUser,
-      blockingUser :req.body.id,
+      blockedUser: req.params.blockedUser,
+      blockingUser: req.body.id,
     }
     const newBlock = new Block(blockObject);
     const response = await newBlock.save();
-    res.send({message: "POST BLOCK ROUTE", response})
+    res.send({ message: "POST BLOCK ROUTE", response })
   })
 
-  router
+router
   .route('/:user1/blocked_from/:user2')
-  .get(async(req,res)=>{
+  .get(async (req, res) => {
     Block.findOne({
-      $and:[
-        {blockedUser:req.params.user1},
-        {blockingUser: req.params.user2}
+      $and: [
+        { blockedUser: req.params.user1 },
+        { blockingUser: req.params.user2 }
       ]
-    }, function(error, block){
-      if(error){res.send(error)}
-      res.send({ block})
+    }, function (error, block) {
+      if (error) { res.send(error) }
+      res.send({ block })
     })
   })
 
-  router
+router
   .route(':/blockedUser/unblock')
-    .post(async (req, res) => {
-      Block.findOneAndDelete({
-        $and: [
-          { blockedUser: req.params.blockedUser },
-          { blockingUser: req.body.id }
-        ]
-      }, function (error, block) {
-        if (error) { res.send(error) }
-        res.send({message: "deleted: ", block })
-      })
+  .post(async (req, res) => {
+    Block.findOneAndDelete({
+      $and: [
+        { blockedUser: req.params.blockedUser },
+        { blockingUser: req.body.id }
+      ]
+    }, function (error, block) {
+      if (error) { res.send(error) }
+      res.send({ message: "deleted: ", block })
     })
+  })
 module.exports = router;
 
 /**
