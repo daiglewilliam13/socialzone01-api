@@ -36,4 +36,9 @@ router
             })
         res.send(foundMessages)
     })
+router
+.route('/:userId/read')
+.post(async(req,res)=>{
+    res.send('mark read route')
+})
 module.exports = router;
