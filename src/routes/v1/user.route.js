@@ -72,11 +72,11 @@ router
       ]
     })
     if(checkForBlock){
-      res.send({message: "block already exists", checkForBlock})
+      res.send({message: "block already exists", checkForBlock, blocked: true})
     } else {
       const newBlock = new Block(blockObject);
       const response = await newBlock.save();
-      res.send({ message: "POST BLOCK ROUTE", response })
+      res.send({ blocked: true, response })
     }
   })
 
@@ -105,7 +105,7 @@ router
       ]
     }, function (error, block) {
       if (error) { res.send({message: "error: ", error}) }
-      res.send({ message: "deleted: ", block })
+      res.send({ blocked: false, block })
     })
   })
 module.exports = router;
