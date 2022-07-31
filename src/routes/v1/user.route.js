@@ -57,6 +57,11 @@ router
     res.send(response)
   })
 
+  router
+  .route('/:userId/block')
+  .post(async (req,res)=>{
+    res.send('block route POST')
+  })
 module.exports = router;
 
 /**
