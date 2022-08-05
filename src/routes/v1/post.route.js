@@ -101,8 +101,12 @@ router
 router
 .route('/:userId/feed')
 .get(async(req,res)=>{
-    res.send({message: "get feed route"})
-    
+    const foundUser = await User.findById(req.params.userId);
+    const followingList = foundUser.following;
+    const feedArray = await Post.find({
+        authorId: followingList
+    })
+    res.send({document: feedArray})
 })
 
 module.exports = router; 
