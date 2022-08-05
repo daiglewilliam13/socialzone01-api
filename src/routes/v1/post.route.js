@@ -105,7 +105,7 @@ router
     const followingList = foundUser.following;
     const feedArray = await Post.find({
         authorId: followingList
-    })
+    }).sort({createdAt: -1})
     res.send({document: feedArray})
 })
 
