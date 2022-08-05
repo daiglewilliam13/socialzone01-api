@@ -98,6 +98,11 @@ router
         })
     })
 
-
+router
+.route('/:userId/feed')
+.get(async(req,res)=>{
+    res.send({message: "get feed route"})
+    
+})
 
 module.exports = router; 
