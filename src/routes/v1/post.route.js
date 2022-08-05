@@ -106,9 +106,10 @@ router
     const followingList = foundUser.following;
     const feedArray = await Post.find({
         authorId: followingList
-    }).sort({createdAt: -1})
-    .skip(req.body.limit*req.body.pageNum)
+    })
     .limit(req.body.limit)
+    .skip(req.body.limit*req.body.pageNum)
+    .sort({createdAt: -1})
     res.send({document: feedArray})
 })
 
