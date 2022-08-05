@@ -100,12 +100,15 @@ router
 
 router
 .route('/:userId/feed')
-.get(async(req,res)=>{
+.post(async(req,res)=>{
     const foundUser = await User.findById(req.params.userId);
+    console.log(req.body)
     const followingList = foundUser.following;
     const feedArray = await Post.find({
         authorId: followingList
     }).sort({createdAt: -1})
+    .skip(req.body.limit*req.body.pageNum)
+    .limit(req.body.limit)
     res.send({document: feedArray})
 })
 
