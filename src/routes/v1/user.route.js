@@ -112,7 +112,8 @@ router
 router
   .route('/:userId/details/edit')
   .get(async (req,res)=>{
-    res.send({message: "GET USER EDIT PROFILE DETAILS ROUTE"})
+    const foundUser = await User.findById(req.params.userId)
+    res.send({message: "GET USER EDIT PROFILE DETAILS ROUTE", user: foundUser})
   })
 module.exports = router;
 
