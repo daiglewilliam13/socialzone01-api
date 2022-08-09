@@ -44,9 +44,11 @@ const userSchema = mongoose.Schema(
     }, 
     firstName: {
       type: String,
+      default: "Pat"
     },
     lastName: {
       type: String,
+      default: "Chris"
     },
     following: [{
       type: mongoose.Types.ObjectId,
@@ -58,9 +60,11 @@ const userSchema = mongoose.Schema(
     }],
     birthdate: {
       type: Date,
+      default: Date.now(),
     },
     profileImg: {
       type: String,
+      default: 'https://imgur.com/gallery/ANRTtf6',
     }
 
   },
