@@ -47,7 +47,10 @@ const userSchema = mongoose.Schema(
     username:{
       type: String,
     }, 
-    fullName: {
+    firstName: {
+      type: String,
+    },
+    lastName: {
       type: String,
     },
     following: [{
@@ -57,8 +60,14 @@ const userSchema = mongoose.Schema(
     followers: [{
       type: mongoose.Types.ObjectId,
       ref: "User",
-    }]
-    
+    }],
+    birthdate: {
+      type: Date,
+    },
+    profilePic: {
+      type: String,
+    }
+
   },
   {
     timestamps: true,

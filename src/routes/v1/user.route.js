@@ -108,6 +108,12 @@ router
       res.send({ blocked: false, block })
     })
   })
+
+router
+  .route('/:userId/details/edit')
+  .get(async (req,res)=>{
+    res.send({message: "GET USER EDIT PROFILE DETAILS ROUTE"})
+  })
 module.exports = router;
 
 /**
