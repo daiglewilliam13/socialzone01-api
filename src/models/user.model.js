@@ -64,7 +64,7 @@ const userSchema = mongoose.Schema(
     },
     profileImg: {
       type: String,
-      default: 'https://imgur.com/gallery/ANRTtf6',
+      default: 'https://i.imgur.com/Go8xOXs.png',
     }
 
   },
