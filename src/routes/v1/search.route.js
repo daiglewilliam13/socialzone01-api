@@ -29,7 +29,7 @@ router
             return data
         })
         let users = await User.find({
-            name: regex
+            username: regex
         }).then((data) => {
             return data
         })
