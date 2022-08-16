@@ -124,7 +124,7 @@ router
       birthdate: req.body.newBirthdate 
     }
 
-    await User.findByIdAndUpdate({_id: req.params.userId}, newDetailsObj, function(err, result){
+    await User.findByIdAndUpdate({_id: req.params.userId}, newDetailsObj,{new: true}, function(err, result){
       if(err){
         res.send(err)
       } else {
