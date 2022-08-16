@@ -115,6 +115,10 @@ router
     const foundUser = await User.findById(req.params.userId)
     res.send({message: "GET USER EDIT PROFILE DETAILS ROUTE", user: foundUser})
   })
+  .post(async (req, res)=>{
+    const newDetailsObj = req.body;
+    res.send({message: "POST USER EDITS ROUTE", sentData: newDetailsObj})
+  })
 module.exports = router;
 
 /**
