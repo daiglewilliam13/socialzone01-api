@@ -19,7 +19,6 @@ router
         const newPost = new Post({
             body: data.body,
             authorId: data.authorId,
-            authorName: data.authorName,
             comments: [],
             _id: mongoose.Types.ObjectId(),
             created: Date.now(),
