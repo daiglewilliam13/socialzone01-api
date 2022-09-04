@@ -137,7 +137,7 @@ router
   .route('/:userId/update/picture')
   .post(async (req, res)=>{
     console.log(req.body)
-    const foundUser = await User.findByIdAndUpdate(req.params.userId, {profileImg: req.body.profileImg})
+    const foundUser = await User.findByIdAndUpdate(req.params.userId, {profileImg: req.body.profileImg}, {new: true})
     console.log(await foundUser)
     res.send(await foundUser);
   })
